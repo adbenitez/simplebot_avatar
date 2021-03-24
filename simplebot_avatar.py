@@ -42,9 +42,7 @@ def _get_reply(text: str, generator: str) -> dict:
     url += "avatar.php?seed=" + quote_plus(text)
     with requests.get(url, headers=HEADERS) as resp:
         resp.raise_for_status()
-        return dict(
-            text=text, filename="avatar.png", bytefile=io.BytesIO(resp.content)
-        )
+        return dict(text=text, filename="avatar.png", bytefile=io.BytesIO(resp.content))
 
 
 class TestSendFile:
