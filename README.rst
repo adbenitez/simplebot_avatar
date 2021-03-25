@@ -1,7 +1,7 @@
 Avatar
 ======
 
-.. image:: https://img.shields.io/github/v/release/simplebot-org/simplebot_avatar
+.. image:: https://img.shields.io/pypi/v/simplebot_avatar.svg
    :target: https://pypi.org/project/simplebot_avatar
 
 .. image:: https://img.shields.io/pypi/pyversions/simplebot_avatar.svg
@@ -10,8 +10,8 @@ Avatar
 .. image:: https://pepy.tech/badge/simplebot_avatar
    :target: https://pepy.tech/project/simplebot_avatar
 
-.. image:: https://img.shields.io/github/license/simplebot-org/simplebot_avatar
-   :target: https://github.com/simplebot-org/simplebot_avatar/blob/master/LICENSE
+.. image:: https://img.shields.io/pypi/l/simplebot_avatar.svg
+   :target: https://pypi.org/project/simplebot_avatar
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black
