@@ -45,7 +45,7 @@ def _get_reply(text: str, generator: str) -> dict:
         return dict(text=text, filename="avatar.png", bytefile=io.BytesIO(resp.content))
 
 
-class TestSendFile:
+class TestPlugin:
     def test_avatar_cat(self, mocker):
         msg = mocker.get_one_reply("/avatar_cat")
         assert msg.filename
