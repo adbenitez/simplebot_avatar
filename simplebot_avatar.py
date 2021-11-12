@@ -1,7 +1,8 @@
 import io
+import random
+import string
 from urllib.parse import quote_plus
 
-import bs4
 import requests
 import simplebot
 from simplebot.bot import Replies
@@ -34,32 +35,28 @@ def avatar_bird(payload: str, replies: Replies) -> None:
 def _get_reply(text: str, generator: str) -> dict:
     url = "https://www.peppercarrot.com/extras/html/{}/".format(generator)
     if not text:
-        with requests.get(url, headers=HEADERS) as resp:
-            resp.raise_for_status()
-            soup = bs4.BeautifulSoup(resp.text, "html.parser")
-        text = soup.find("img", class_="avatar")["src"].rsplit("=", maxsplit=1)[-1]
-
+        text = _generate_token(13)
     url += "avatar.php?seed=" + quote_plus(text)
     with requests.get(url, headers=HEADERS) as resp:
         resp.raise_for_status()
         return dict(text=text, filename="avatar.png", bytefile=io.BytesIO(resp.content))
 
 
+def _generate_token(length: int) -> str:
+    return "".join(random.choices(string.ascii_letters + string.digits, k=length))
+
+
 class TestPlugin:
     def test_avatar_cat(self, mocker):
         msg = mocker.get_one_reply("/avatar_cat")
-        assert msg.filename
-        # assert msg.is_image()
+        assert msg.is_image()
 
         msg = mocker.get_one_reply("/avatar_cat test avatar")
-        assert msg.filename
-        # assert msg.is_image()
+        assert msg.is_image()
 
     def test_avatar_bird(self, mocker):
         msg = mocker.get_one_reply("/avatar_bird")
-        assert msg.filename
-        # assert msg.is_image()
+        assert msg.is_image()
 
         msg = mocker.get_one_reply("/avatar_bird test avatar")
-        assert msg.filename
-        # assert msg.is_image()
+        assert msg.is_image()
